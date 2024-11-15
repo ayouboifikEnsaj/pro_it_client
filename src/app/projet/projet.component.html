@@ -1,0 +1,169 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Projects</mat-card-title>
+    <mat-card-subtitle>A list of all the Projects.</mat-card-subtitle>
+    <mat-card-actions>
+      <button class="btn btn-outline-primary" (click)="openDialog()">
+        <mat-icon>add</mat-icon>
+        New Project
+      </button>
+    </mat-card-actions>
+  </mat-card-header>
+  <mat-card-content>
+    <div class="table-container">
+      <mat-form-field appearance="outline">
+        <mat-label>Search</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Search in project">
+      </mat-form-field>
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+        <!-- ID Column -->
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef> ID </th>
+          <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+        </ng-container>
+
+        <!-- Projet Name Column -->
+        <ng-container matColumnDef="projetName">
+          <th mat-header-cell *matHeaderCellDef> ProjectName </th>
+          <td mat-cell *matCellDef="let element"> {{element.projetName}} </td>
+        </ng-container>
+
+
+        <!-- Actions Column -->
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef> Actions </th>
+          <td mat-cell *matCellDef="let element">
+            <button mat-icon-button class="btn btn-outline-warning" (click)="openDialog(element)">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button  mat-icon-button class="btn btn-outline-danger" (click)="deleteProjet(element)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+      <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page of periodic elements">
+      </mat-paginator>
+    </div>
+  </mat-card-content>
+</mat-card>
+<!------ AddEquipmentToProjet------->
+<mat-card>
+  <mat-card-header>
+    <mat-card-title style="color: #3f51b5">Add Equipment To Project</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <div class="table-container">
+      <form [formGroup]="formProjetEquipment" (ngSubmit)="addEquipmentToProjet()">
+        <div mat-dialog-content>
+          <mat-form-field>
+            <mat-label>EquipmentName</mat-label>
+            <mat-select formControlName="eqipmentId">
+              <mat-option *ngFor="let equipment of equipments" [value]="equipment.id">
+                {{ equipment.equipmentName }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>ProjectName</mat-label>
+            <mat-select formControlName="projectName">
+              <mat-option *ngFor="let project of projects" [value]="project.projetName">
+                {{ project.projetName }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div mat-dialog-actions>
+          <button  type="submit" class="btn btn-outline-primary">Save</button>
+        </div>
+      </form>
+      <table mat-table [dataSource]="dataSourceAdd" class="mat-elevation-z8">
+
+        <!-- Projet Column -->
+        <ng-container matColumnDef="projet">
+          <th mat-header-cell *matHeaderCellDef> Projet </th>
+          <td mat-cell *matCellDef="let element"> {{element.projetName}} </td>
+        </ng-container>
+
+        <!-- Equipemt Column -->
+        <ng-container matColumnDef="equipment">
+          <th mat-header-cell *matHeaderCellDef> Equipment </th>
+          <td mat-cell *matCellDef="let element">
+
+            <ul>
+              <li *ngFor="let equipment of element.equipments">
+                {{equipment.equipementName}} : {{equipment.id}}:
+              </li>
+            </ul>
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns1"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns1;"></tr>
+      </table>
+      <mat-paginator #addPaginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page of periodic elements">
+      </mat-paginator>
+    </div>
+  </mat-card-content>
+</mat-card>
+<!------------------ RemoveEquipmentFromProjet ------------------------->
+<mat-card>
+  <mat-card-header>
+    <mat-card-title style="color: #f44336">Remove Equipment From Project</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <div class="table-container">
+      <form [formGroup]="formProjetEquipment" (ngSubmit)="removeEquipmentFromProjet()">
+        <div mat-dialog-content>
+          <mat-form-field>
+            <mat-label>EquipmentName</mat-label>
+            <mat-select formControlName="eqipmentId">
+              <mat-option *ngFor="let equipment of equipments" [value]="equipment.id">
+                {{ equipment.equipmentName }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>ProjectName</mat-label>
+            <mat-select formControlName="projectName">
+              <mat-option *ngFor="let project of projects" [value]="project.projetName">
+                {{ project.projetName }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div mat-dialog-actions>
+          <button  type="submit" class="btn btn-outline-danger">Remove</button>
+        </div>
+      </form>
+      <table mat-table [dataSource]="dataSourceRemove" class="mat-elevation-z8">
+        <!-- Projet Column -->
+        <ng-container matColumnDef="projet">
+          <th mat-header-cell *matHeaderCellDef> Projet </th>
+          <td mat-cell *matCellDef="let element"> {{element.projetName}} </td>
+        </ng-container>
+
+        <!-- Equipemt Column -->
+        <ng-container matColumnDef="equipment">
+          <th mat-header-cell *matHeaderCellDef> Equipment </th>
+          <td mat-cell *matCellDef="let element">
+
+            <ul>
+              <li *ngFor="let equipment of element.equipments">
+                {{equipment.equipementName}} : {{equipment.id}}:
+              </li>
+            </ul>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns1"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns1;"></tr>
+      </table>
+      <mat-paginator #removePaginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page of periodic elements">
+      </mat-paginator>
+    </div>
+  </mat-card-content>
+</mat-card>

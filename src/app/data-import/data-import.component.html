@@ -1,0 +1,98 @@
+<div class="container">
+  <h2>Data Import</h2>
+  <div>
+  <h4>Company</h4>
+  <form (submit)="onSubmitCompany()">
+    <div class="mb-3">
+      <input type="file" (change)="onFileSelectedCompany($event)" accept=".xlsx" class="form-control" aria-label="file example" required>
+      <div class="invalid-feedback">Example invalid form file feedback</div>
+    </div>
+    <button class="btn btn-outline-primary" type="submit" [disabled]="!selectedFileCompany">Upload</button>
+  </form>
+  </div>
+  <div>
+    <h4>Airports</h4>
+    <form (submit)="onSubmitAeroports()">
+      <div class="mb-3">
+        <input type="file" (change)="onFileSelectedAeroports($event)" accept=".xlsx" class="form-control" aria-label="file example" required />
+        <div class="invalid-feedback">Example invalid form file feedback</div>
+      </div>
+      <button class="btn btn-outline-primary" type="submit" [disabled]="!selectedFileAirport">Upload</button>
+    </form>
+  </div>
+  <div>
+    <h4>Users</h4>
+    <form (submit)="onSubmitUsers()">
+      <div class="mb-3">
+        <input type="file" (change)="onFileSelectedUsers($event)" accept=".xlsx" class="form-control" aria-label="file example" required />
+        <div class="invalid-feedback">Example invalid form file feedback</div>
+      </div>
+      <button class="btn btn-outline-primary" type="submit" [disabled]="!selectedFileUser">Upload</button>
+    </form>
+  </div>
+  <div>
+    <h4>Problems</h4>
+    <form (submit)="onSubmitProblems()">
+      <div class="mb-3">
+        <input type="file" (change)="onFileSelectedProblems($event)" accept=".xlsx" class="form-control" aria-label="file example" required />
+        <div class="invalid-feedback">Example invalid form file feedback</div>
+      </div>
+      <button class="btn btn-outline-primary" type="submit" [disabled]="!selectedFileProblem">Upload</button>
+    </form>
+  </div>
+  <div>
+    <h4>Solutions</h4>
+    <form (submit)="onSubmitSolutions()">
+      <div class="mb-3">
+        <input type="file" (change)="onFileSelectedSolutions($event)" accept=".xlsx" class="form-control" aria-label="file example" required />
+        <div class="invalid-feedback">Example invalid form file feedback</div>
+      </div>
+      <button class="btn btn-outline-primary" type="submit" [disabled]="!selectedFileSolution">Upload</button>
+    </form>
+  </div>
+  <div>
+    <h4>Zones</h4>
+    <form (submit)="onSubmitZones()">
+      <div class="mb-3">
+        <input type="file" (change)="onFileSelectedZones($event)" accept=".xlsx" class="form-control" aria-label="file example" required />
+        <div class="invalid-feedback">Example invalid form file feedback</div>
+      </div>
+      <button class="btn btn-outline-primary" type="submit" [disabled]="!selectedFileZone">Upload</button>
+    </form>
+  </div>
+  <div>
+    <h4>Equipments</h4>
+    <form (submit)="onSubmitEquipment()">
+      <div class="mb-3">
+        <input type="file" (change)="onFileSelectedEquipments($event)" accept=".xlsx" class="form-control" aria-label="file example" required />
+        <div class="invalid-feedback">Example invalid form file feedback</div>
+      </div>
+      <button class="btn btn-outline-primary" type="submit" [disabled]="!selectedFileEquipment">Upload</button>
+    </form>
+  </div>
+  <div>
+    <h4>Counter</h4>
+    <form (submit)="onSubmitComptoire()">
+      <div class="mb-3">
+        <input type="file" (change)="onFileSelectedComptoires($event)" accept=".xlsx" class="form-control" aria-label="file example" required />
+        <div class="invalid-feedback">Example invalid form file feedback</div>
+      </div>
+      <button class="btn btn-outline-primary" type="submit" [disabled]="!selectedFileComptoire">Upload</button>
+    </form>
+  </div>
+  <div>
+    <h4>Interventions</h4>
+    <form (submit)="onSubmitIntervention()">
+      <div class="mb-3">
+        <input type="file" (change)="onFileSelectedInterventions($event)" accept=".xlsx" class="form-control" aria-label="file example" required />
+        <div class="invalid-feedback">Example invalid form file feedback</div>
+      </div>
+      <button class="btn btn-outline-primary" type="submit" [disabled]="!selectedFileIntervention">Upload</button>
+    </form>
+  </div>
+  <div *ngIf="message" class="alert alert-info">
+    {{ message }}
+  </div>
+
+</div>
+

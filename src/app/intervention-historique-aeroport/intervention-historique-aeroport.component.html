@@ -1,0 +1,126 @@
+<mat-card class="stylish-card">
+  <mat-card-header>
+    <mat-card-title>Historique Interventions</mat-card-title>
+    <mat-card-subtitle>A list of all interventions.</mat-card-subtitle>
+  </mat-card-header>
+      <mat-card-content>
+        <div class="table-container">
+          <mat-form-field appearance="outline" class="filter-field">
+            <mat-label>Durée</mat-label>
+            <mat-select [(ngModel)]="selectedDuration" (selectionChange)="applyFilter()">
+              <mat-option *ngFor="let option of durationOptions" [value]="option">{{option}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="filter-field">
+            <mat-label>Zone</mat-label>
+            <mat-select [(ngModel)]="selectedZone" (selectionChange)="fetchComptoires()">
+              <mat-option *ngFor="let zone of zones" [value]="zone">
+                {{ zone.zoneName }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="filter-field">
+            <mat-label>Comptoire</mat-label>
+            <mat-select [(ngModel)]="selectedComptoire" (selectionChange)="applyFilter()">
+              <mat-option *ngFor="let comptoire of comptoires" [value]="comptoire">{{comptoire.comptoireName}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="filter-field">
+            <mat-label>Technicien</mat-label>
+            <mat-select [(ngModel)]="selectedtechnicien" (selectionChange)="applyFilter()">
+              <mat-option *ngFor="let technicien of techniciens" [value]="technicien">
+                {{technicien.username}} : {{technicien.aeroport.aeroportName}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="filter-field">
+            <mat-label>Date</mat-label>
+            <input matInput [matDatepicker]="picker" [(ngModel)]="selectedDate" (dateChange)="applyFilter()">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="filter-field">
+            <mat-label>Month</mat-label>
+            <input matInput [matDatepicker]="picker1" [(ngModel)]="selectedMonth" (dateChange)="applyFilter()">
+            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+            <mat-datepicker #picker1></mat-datepicker>
+          </mat-form-field>
+          <button mat-raised-button color="primary" (click)="clearFilter()">Annuler le filtre</button>
+          <table mat-table [dataSource]="dataSourceFermer" class="mat-elevation-z8 styled-table">
+
+            &lt;!&ndash; Columns Definitions &ndash;&gt;
+            <ng-container matColumnDef="id">
+              <th mat-header-cell *matHeaderCellDef> ID </th>
+              <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="date">
+              <th mat-header-cell *matHeaderCellDef> Date </th>
+              <td mat-cell *matCellDef="let element"> {{element.date | date}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="heureDebut">
+              <th mat-header-cell *matHeaderCellDef> Start Time </th>
+              <td mat-cell *matCellDef="let element"> {{element.heureDebut | date:'shortTime'}} </td>
+            </ng-container>
+            <ng-container matColumnDef="duration">
+              <th mat-header-cell *matHeaderCellDef> Duration </th>
+              <td mat-cell *matCellDef="let element"> {{element.duration }} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="heureFin">
+              <th mat-header-cell *matHeaderCellDef> End Time </th>
+              <td mat-cell *matCellDef="let element"> {{element.heureFin | date:'shortTime'}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="compagnie">
+              <th mat-header-cell *matHeaderCellDef> Compagnie </th>
+              <td mat-cell *matCellDef="let element"> {{element.compagnie?.compagnieName || 'N/A'}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="appUser">
+              <th mat-header-cell *matHeaderCellDef> Technician </th>
+              <td mat-cell *matCellDef="let element"> {{element.appUser?.username || 'N/A'}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="comptoire">
+              <th mat-header-cell *matHeaderCellDef> Comptoire /Zone </th>
+              <td mat-cell *matCellDef="let element">
+                {{element.comptoire?.comptoireName || 'N/A'}} :{{element.comptoire?.zone.zoneName || 'N/A'}}
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="equipment">
+              <th mat-header-cell *matHeaderCellDef> Equipment </th>
+              <td mat-cell *matCellDef="let element"> {{element.equipment?.equipementName || '--'}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="solution">
+              <th mat-header-cell *matHeaderCellDef> Solution </th>
+              <td mat-cell *matCellDef="let element"> {{element.solution?.libelle || '--'}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="probleme">
+              <th mat-header-cell *matHeaderCellDef> Problem </th>
+              <td mat-cell *matCellDef="let element"> {{element.probleme?.libelle || '--'}} </td>
+            </ng-container>
+            <ng-container matColumnDef="project">
+              <th mat-header-cell *matHeaderCellDef> Project </th>
+              <td mat-cell *matCellDef="let element"> {{element.projet?.projetName || '--'}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="aeroport">
+              <th mat-header-cell *matHeaderCellDef> Airport </th>
+              <td mat-cell *matCellDef="let element"> {{element.aeroport?.aeroportName || 'N/A'}} </td>
+            </ng-container>
+
+
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+          <mat-paginator #paginatorFermer [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page of interventions">
+          </mat-paginator>
+        </div>
+      </mat-card-content>
+</mat-card>

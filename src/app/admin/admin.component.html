@@ -1,0 +1,60 @@
+<mat-toolbar class="mat-elevation-z3" style="background: blue">
+  <button (click)="MySidenav.toggle()" mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+    <mat-icon style="color: white">menu</mat-icon>
+  </button>
+  <span style="color: white">PRO-IT</span>
+
+  <span class="example-spacer"></span>
+
+
+  <button style="color: white" [matMenuTriggerFor]="importmenu" mat-button>
+    <mat-icon iconPositionEnd>keyboard_arrow_down</mat-icon>
+
+      {{authService.username}}
+
+  </button>
+  <mat-menu #importmenu>
+    <button  (click)="handleLogout()"  mat-menu-item>Logout</button>
+    <button  mat-menu-item>Profile</button>
+
+  </mat-menu>
+</mat-toolbar>
+
+<mat-sidenav-container>
+  <mat-sidenav #MySidenav style="background: white " opened="true" mode="side" [style.width]="'200px'" >
+   <app-custom-sidebar/>
+  </mat-sidenav>
+  <mat-sidenav-content class="content">
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+
+</mat-sidenav-container>
+
+<!--<mat-drawer-container >
+  <mat-drawer style="background: azure " opened="true" mode="side" position="start">
+    <mat-list>
+      <mat-list-item>
+        <button routerLink="/admin/reporting" mat-button> dashbord</button>
+      </mat-list-item>
+      <mat-list-item>
+        <button routerLink="/admin/zone" mat-button> Zone</button>
+      </mat-list-item>
+      <mat-list-item>
+        <button routerLink="/admin/comptoire" mat-button> Comptoire</button>
+      </mat-list-item>
+      <mat-list-item>
+        <button routerLink="/admin/aeroport" mat-button> Aeroport</button>
+      </mat-list-item>
+      <mat-list-item>
+        <button routerLink="/admin/reporting" mat-button> dashbord</button>
+      </mat-list-item>
+
+    </mat-list>
+
+  </mat-drawer>
+  <mat-drawer-content>
+    <div style="min-height: 600px">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-drawer-content>
+</mat-drawer-container>-->

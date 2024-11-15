@@ -1,0 +1,54 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Zones</mat-card-title>
+    <mat-card-subtitle>A list of all the zone.</mat-card-subtitle>
+    <mat-card-actions>
+      <button (click)="openDialog()" class="btn btn-outline-primary">
+        <mat-icon>add</mat-icon>
+        New zone
+      </button>
+    </mat-card-actions>
+  </mat-card-header>
+  <mat-card-content>
+    <div class="table-container">
+      <mat-form-field appearance="outline">
+        <mat-label>Search</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Search in zones">
+      </mat-form-field>
+      <table mat-table [dataSource]="dataSource"  class="mat-elevation-z8">
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef> ID </th>
+          <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+        </ng-container>
+
+        <!-- Title Column -->
+        <ng-container matColumnDef="zoneName">
+          <th mat-header-cell *matHeaderCellDef> zoneName </th>
+          <td mat-cell *matCellDef="let element"> {{element.zoneName}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef> Action </th>
+          <td mat-cell *matCellDef="let element">
+            <button (click)="openDialog(element)" mat-icon-button class="btn btn-outline-warning" >
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button (click)="deleteZone(element)" mat-icon-button class="btn btn-outline-danger" >
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+      <mat-paginator  [pageSizeOptions]="[5, 10, 20]"
+                     showFirstLastButtons
+                     aria-label="Select page of periodic elements">
+      </mat-paginator>
+    </div>
+  </mat-card-content>
+
+</mat-card>

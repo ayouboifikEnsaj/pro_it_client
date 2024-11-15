@@ -1,0 +1,23 @@
+<form [formGroup]="formComptoire" (ngSubmit)="saveComptoire()">
+  <h3 mat-dialog-title>{{ data.title }}</h3>
+  <div mat-dialog-content>
+    <mat-form-field>
+      <mat-label>comptoireName</mat-label>
+      <input matInput formControlName="comptoireName">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>zoneName</mat-label>
+      <mat-select formControlName="zoneId">
+        <mat-option *ngFor="let zone of zones" [value]="zone.id">
+          {{ zone.zoneName }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+  </div>
+  <div mat-dialog-actions>
+    <button mat-raised-button type="submit" color="primary">Save</button>
+    <button (click)="onNoClick()" mat-raised-button color="warn">Cancel</button>
+  </div>
+</form>
+

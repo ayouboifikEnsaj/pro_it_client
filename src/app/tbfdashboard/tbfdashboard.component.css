@@ -1,0 +1,29 @@
+
+.chart-card {
+  max-width: 500px; /* Adjust as needed */
+  margin: 20px auto; /* Center horizontally */
+  padding: 20px;
+  text-align: center; /* Center text and content */
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center content horizontally */
+}
+
+.full-width {
+  width: 100%;
+}
+
+.chart-container {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 400px; /* Adjust as needed */
+  margin: 20px auto; /* Center horizontally */
+}
+
+canvas {
+  max-width: 100%;
+  height: auto;
+}
+

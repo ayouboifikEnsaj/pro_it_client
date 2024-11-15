@@ -1,0 +1,77 @@
+<mat-nav-list >
+  <a mat-list-item routerLink="/admin/reporting"  *ngIf="isAdmin">
+    <mat-icon matListItemIcon>assessment</mat-icon>
+    <span matListItemTitle>Reporting</span>
+  </a>
+  <a mat-list-item routerLink="/admin/zone"  *ngIf="isAdmin">
+    <mat-icon fontIcon="pin_drop" matListItemIcon >menu</mat-icon>
+    <span style="color: blue" matListItemTitle>Zones</span>
+  </a>
+  <a mat-list-item routerLink="/admin/users"  *ngIf="isAdmin">
+    <mat-icon fontIcon="account_circle" matListItemIcon >account_circle</mat-icon>
+    <span style="color: blue" matListItemTitle>Users</span>
+  </a>
+  <a mat-list-item routerLink="/admin/aeroport"  *ngIf="isAdmin">
+    <mat-icon fontIcon="local_airport" matListItemIcon></mat-icon>
+    <span matListItemTitle>Airports</span>
+  </a>
+  <a mat-list-item routerLink="/admin/compagnie"  *ngIf="isAdmin">
+    <mat-icon fontIcon="business_center" matListItemIcon></mat-icon>
+    <span matListItemTitle>Company</span>
+  </a>
+  <a mat-list-item routerLink="/admin/comptoire"  *ngIf="isAdmin">
+    <mat-icon fontIcon="domain" matListItemIcon></mat-icon>
+    <span matListItemTitle>Counter</span>
+  </a>
+  <a mat-list-item routerLink="/admin/projet"  *ngIf="isAdmin">
+    <mat-icon fontIcon="swap_calls" matListItemIcon></mat-icon>
+    <span matListItemTitle>Projects</span>
+  </a>
+  <a mat-list-item routerLink="/admin/equipment"  *ngIf="isAdmin">
+    <mat-icon fontIcon="settings_input_composite" matListItemIcon></mat-icon>
+    <span matListItemTitle>Equipment</span>
+  </a>
+  <a mat-list-item routerLink="/admin/probleme"  *ngIf="isAdmin">
+    <mat-icon fontIcon="report_problem" matListItemIcon></mat-icon>
+    <span matListItemTitle>Probleme</span>
+  </a>
+  <a mat-list-item routerLink="/admin/solution"  *ngIf="isAdmin">
+    <mat-icon fontIcon="sync_problem" matListItemIcon></mat-icon>
+    <span matListItemTitle>Solution</span>
+  </a>
+  <a mat-list-item routerLink="/admin/intervention" *ngIf="isAdmin">
+    <mat-icon fontIcon="report" matListItemIcon></mat-icon>
+    <span matListItemTitle>Intervention</span>
+  </a>
+  <a mat-list-item routerLink="/technicien/intervention" *ngIf="isTechnicien">
+    <mat-icon matListItemIcon>report_problem</mat-icon>
+    <span matListItemTitle> My Interventions</span>
+  </a>
+  <a mat-list-item routerLink="/technicien/intervention/historique" *ngIf="isTechnicien">
+    <mat-icon matListItemIcon>history</mat-icon>
+    <span matListItemTitle> History</span>
+  </a>
+  <a mat-list-item routerLink="/technicien/intervention/historique/aeroport" *ngIf="isTechnicien">
+    <mat-icon matListItemIcon>history</mat-icon>
+    <span matListItemTitle> Airport history</span>
+  </a>
+
+  <a mat-list-item routerLink="/helpdesk/intervention" *ngIf="isHelpdesk">
+    <mat-icon matListItemIcon>report_problem</mat-icon>
+    <span matListItemTitle> My Interventions</span>
+  </a>
+  <a mat-list-item routerLink="/helpdesk/intervention/historique" *ngIf="isHelpdesk">
+    <mat-icon matListItemIcon>history</mat-icon>
+    <span matListItemTitle> History</span>
+  </a>
+  <a mat-list-item routerLink="/helpdesk/intervention/historique" *ngIf="isAdmin">
+    <mat-icon matListItemIcon>history</mat-icon>
+    <span matListItemTitle> Historiy</span>
+  </a>
+  <a mat-list-item routerLink="/admin/data-import" *ngIf="isAdmin">
+    <mat-icon matListItemIcon>upload</mat-icon>
+    <span matListItemTitle> Data-Import</span>
+  </a>
+
+
+</mat-nav-list>

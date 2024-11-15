@@ -1,0 +1,17 @@
+<form [formGroup]="formAeroport" (ngSubmit)="saveAeroport()">
+  <h3 mat-dialog-title>{{ data.title }}</h3>
+  <div mat-dialog-content>
+    <mat-form-field>
+      <mat-label>AeroportName</mat-label>
+      <input matInput formControlName="aeroportName">
+    </mat-form-field>
+
+
+  </div>
+  <div mat-dialog-actions>
+    <button mat-raised-button type="submit" color="primary">Save</button>
+    <button (click)="onNoClick()" mat-raised-button color="warn">Cancel</button>
+  </div>
+</form>
+
+

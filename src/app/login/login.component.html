@@ -1,0 +1,28 @@
+<div class="bleu-body">
+  <img width=100 height="150" src="assets/proitSW-logo.png" alt="Une belle image">
+<div class="centered-element">
+  <div class="card">
+    <div class="card-header">Authentication</div>
+    <div class="card-body">
+      <form [formGroup]="formLogin" (ngSubmit)="submitLogin()" >
+        <div>
+          <label class="form-label">Username</label>
+          <input type="text" class="form-control" formControlName="username">
+        </div>
+        <div>
+          <label class="form-label">Password</label>
+          <input type="password" class="form-control" formControlName="password">
+        </div>
+        <div  class="text-danger" *ngIf="visibility">Incorrect username or password</div>
+        <div class="text-center">
+          <button class="btn btn-outline-primary">Login</button>
+        </div>
+      </form>
+    </div>
+
+  </div>
+</div>
+
+
+
+</div>

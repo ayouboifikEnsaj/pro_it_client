@@ -1,0 +1,38 @@
+<form [formGroup]="formIntervention" (ngSubmit)="finIntervention()">
+  <h3 mat-dialog-title class="dialog-title">{{ data.title }}</h3>
+  <div mat-dialog-content class="form-container">
+    <!-- Form fields with adjusted sizes -->
+
+      <mat-form-field class="custom-form-field">
+        <mat-label>Equipment</mat-label>
+        <mat-select formControlName="equipment">
+          <mat-option *ngFor="let equipment of equipments" [value]="equipment.id">
+            {{ equipment.equipmentName
+            }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field class="custom-form-field">
+        <mat-label>Solution</mat-label>
+        <mat-select formControlName="solution">
+          <mat-option *ngFor="let solution of solutions" [value]="solution.id">
+            {{ solution.libelle }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field class="custom-form-field">
+        <mat-label>Problème</mat-label>
+        <mat-select formControlName="probleme">
+          <mat-option *ngFor="let probleme of problemes" [value]="probleme.id">
+            {{ probleme.libelle }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+
+  </div>
+  <div mat-dialog-actions class="dialog-actions">
+    <button mat-raised-button type="submit" color="primary" class="submit-button">Completed</button>
+    <button (click)="onNoClick()" mat-raised-button color="warn" class="cancel-button">Cancel</button>
+  </div>
+</form>

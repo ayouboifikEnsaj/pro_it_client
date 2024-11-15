@@ -1,0 +1,15 @@
+<h4 mat-dialog-title>{{data.id ? 'Edit' : 'New'}} Equipment</h4>
+<div mat-dialog-content>
+  <form [formGroup]="projetForm">
+    <mat-form-field>
+      <mat-label>Project Name</mat-label>
+      <input matInput formControlName="projetName">
+    </mat-form-field>
+
+
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-raised-button color="warn" (click)="onNoClick()">Cancel</button>
+  <button mat-raised-button color="primary"  (click)="onSubmit()" cdkFocusInitial>Save</button>
+</div>

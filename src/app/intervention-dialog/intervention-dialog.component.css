@@ -1,0 +1,50 @@
+/* Ensure the dialog doesn't scroll */
+.mat-dialog-content {
+    max-height: 80vh; /* Adjust this value as needed */
+    overflow-y: auto; /* Allows scrolling if content exceeds viewport height */
+    padding: 0 24px; /* Adjust padding as needed */
+  }
+  
+  .dialog-title {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #3f51b5; /* Primary color */
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .form-container {
+    display: flex;
+    flex-wrap: wrap; /* Wrap form fields to fit within the container */
+    gap: 16px;
+  }
+  
+  .custom-form-field {
+    flex: 1 1 100%; /* Full width on smaller screens */
+    margin-bottom: 16px;
+  }
+  
+  @media (min-width: 600px) {
+    .custom-form-field {
+      flex: 1 1 48%; /* Adjust field width for larger screens */
+    }
+  }
+  
+  .dialog-actions {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 16px;
+  }
+  
+  .submit-button {
+    background-color: #3f51b5; /* Primary color */
+    color: white;
+    font-weight: 500;
+  }
+  
+  .cancel-button {
+    background-color: #f44336; /* Warn color */
+    color: white;
+    font-weight: 500;
+  }
+  

@@ -1,0 +1,13 @@
+<h4 mat-dialog-title>{{data.id ? 'Update' : 'New'}} Solution</h4>
+<div mat-dialog-content>
+  <form [formGroup]="solutionForm">
+    <mat-form-field>
+      <mat-label>Libelle</mat-label>
+      <input matInput formControlName="libelle">
+    </mat-form-field>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button class="btn btn-outline-danger" (click)="onNoClick()">Cancel</button>
+  <button class="btn btn-outline-success"  (click)="onSubmit()" cdkFocusInitial>Save</button>
+</div>

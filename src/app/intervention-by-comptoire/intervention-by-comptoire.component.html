@@ -1,0 +1,29 @@
+<!-- intervention-by-comptoire.component.html -->
+<mat-card class="chart-card">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Comptoire</mat-label>
+        <mat-select formControlName="comptoire">
+          <mat-option *ngFor="let comptoire of comptoires" [value]="comptoire.id">
+            {{ comptoire.comptoireName }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+  
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Month</mat-label>
+        <mat-select formControlName="month">
+          <mat-option *ngFor="let month of months" [value]="month.value">
+            {{ month.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+  
+      <button mat-raised-button color="primary" type="submit">Submit</button>
+    </form>
+  </mat-card>
+  
+  <div class="chart-container">
+    <canvas id="chart"></canvas>
+  </div>
+  

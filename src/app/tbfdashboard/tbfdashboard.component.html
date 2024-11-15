@@ -1,0 +1,35 @@
+<mat-card class="chart-card">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Project</mat-label>
+      <mat-select formControlName="projet">
+        <mat-option *ngFor="let projet of projects" [value]="projet.id">
+          {{ projet.projetName }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Airport</mat-label>
+      <mat-select  formControlName="aeroport">
+        <mat-option *ngFor="let aeroport of aeroports" [value]="aeroport.id">
+          {{ aeroport.aeroportName }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Choose a date</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="date">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker
+      ></mat-datepicker>
+    </mat-form-field>
+    <button class=" btn btn-outline-primary" type="submit">Submit</button>
+    <div>
+      <label>The TBF is :</label>
+      <span *ngIf="resultTBF !== null">{{ getFormattedResultTBF() }}%</span>
+    </div>
+  </form>
+</mat-card>
+
+

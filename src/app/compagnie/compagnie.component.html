@@ -1,0 +1,175 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Compagnies</mat-card-title>
+    <mat-card-subtitle>A list of all the compagnie.</mat-card-subtitle>
+    <mat-card-actions>
+      <button (click)="openDialog()" class="btn btn-outline-primary">
+        <mat-icon>add</mat-icon>
+        New Compagnie
+      </button>
+    </mat-card-actions>
+  </mat-card-header>
+  <mat-card-content>
+    <div class="table-container">
+      <mat-form-field appearance="outline">
+        <mat-label>Search</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Search in Compagnies">
+      </mat-form-field>
+      <table mat-table [dataSource]="dataSource"  class="mat-elevation-z8">
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef> ID </th>
+          <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+        </ng-container>
+
+        <!-- Email Column -->
+        <ng-container matColumnDef="compagnieName">
+          <th mat-header-cell *matHeaderCellDef> compagnieName </th>
+          <td mat-cell *matCellDef="let element"> {{element.compagnieName}} </td>
+        </ng-container>
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef> Action </th>
+          <td mat-cell *matCellDef="let element">
+            <button (click)="openDialog(element)" mat-icon-button class="btn btn-outline-warning" >
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button (click)="deleteCompagnie(element)" mat-icon-button class="btn btn-outline-danger" >
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+      <mat-paginator #compagniePaginator  [pageSizeOptions]="[5, 10, 20]"
+                      showFirstLastButtons
+                      aria-label="Select page of periodic elements">
+      </mat-paginator>
+    </div>
+  </mat-card-content>
+
+</mat-card >
+<!------- ADD Companie To Aeroport-------->
+<mat-card *ngIf="shouldDisplayCard">
+  <mat-card-header>
+    <mat-card-title style="color: blue">Ajouter Compagnie To Aeroport</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <div class="table-container">
+      <form [formGroup]="formCompanieAeroport" (ngSubmit)="addCompagnieToAerport()">
+        <div mat-dialog-content>
+          <mat-form-field>
+            <mat-label>aeroportName</mat-label>
+            <mat-select formControlName="aeroportName">
+              <mat-option *ngFor="let aeroport of aeroports" [value]="aeroport.aeroportName">
+                {{ aeroport.aeroportName }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>compagnieName</mat-label>
+            <mat-select formControlName="compagnieName">
+              <mat-option *ngFor="let compagnie of compagnies" [value]="compagnie.compagnieName">
+                {{ compagnie.compagnieName }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div mat-dialog-actions>
+          <button  type="submit" class="btn btn-outline-primary">Sauvguardez</button>
+        </div>
+      </form>
+      <h6>La liste des compagnie dans un aeroport</h6>
+      <table mat-table [dataSource]="dataSource1"  class="mat-elevation-z8">
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="aeroport">
+          <th mat-header-cell *matHeaderCellDef> Aeroport </th>
+          <td mat-cell *matCellDef="let element"> {{element.aeroportName}} </td>
+
+        </ng-container>
+
+        <!-- Email Column -->
+        <ng-container matColumnDef="compagnieNames">
+          <th mat-header-cell *matHeaderCellDef> Compagnies </th>
+          <td mat-cell *matCellDef="let element">
+
+            <ul>
+              <li *ngFor="let compagnie of element.compagnieNames">{{compagnie}}</li>
+            </ul>
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns1"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns1;"></tr>
+      </table>
+      <mat-paginator #addcompagniePaginator  [pageSizeOptions]="[5, 10, 20]"
+                      showFirstLastButtons
+                      aria-label="Select page of periodic elements">
+      </mat-paginator>
+    </div>
+  </mat-card-content>
+
+</mat-card>
+<!------- REMOVE Companie To Aeroport-------->
+<mat-card *ngIf="shouldDisplayCard">
+  <mat-card-header>
+    <mat-card-title style="color: crimson">Remove Compagnie From Aeroport</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <div class="table-container">
+      <form [formGroup]="formCompanieAeroport" (ngSubmit)="removeCompagnieToAerport()">
+        <div mat-dialog-content>
+          <mat-form-field>
+            <mat-label>aeroportName</mat-label>
+            <mat-select formControlName="aeroportName">
+              <mat-option *ngFor="let aeroport of aeroports" [value]="aeroport.aeroportName">
+                {{ aeroport.aeroportName }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>compagnieName</mat-label>
+            <mat-select formControlName="compagnieName">
+              <mat-option *ngFor="let compagnie of compagnies" [value]="compagnie.compagnieName">
+                {{ compagnie.compagnieName }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div mat-dialog-actions>
+          <button  type="submit" class="btn btn-outline-danger">Remove</button>
+        </div>
+      </form>
+      <h6>La liste des compagnie dans un aeroport</h6>
+      <table mat-table [dataSource]="dataSource2"  class="mat-elevation-z8">
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="aeroport">
+          <th mat-header-cell *matHeaderCellDef> Aeroport </th>
+          <td mat-cell *matCellDef="let element"> {{element.aeroportName}} </td>
+
+        </ng-container>
+
+        <!-- Email Column -->
+        <ng-container matColumnDef="compagnieNames">
+          <th mat-header-cell *matHeaderCellDef> Compagnies </th>
+          <td mat-cell *matCellDef="let element">
+
+            <ul>
+              <li *ngFor="let compagnie of element.compagnieNames">{{compagnie}}</li>
+            </ul>
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns1"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns1;"></tr>
+      </table>
+      <mat-paginator #removecompagniePaginator  [pageSizeOptions]="[5, 10, 20]"
+                      showFirstLastButtons
+                      aria-label="Select page of periodic elements">
+      </mat-paginator>
+    </div>
+  </mat-card-content>
+
+</mat-card>

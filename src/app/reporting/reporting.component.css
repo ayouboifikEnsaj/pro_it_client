@@ -1,0 +1,42 @@
+.table-container {
+  overflow: auto;
+  max-height: 500px;
+}
+
+mat-card {
+  margin: 20px;
+}
+
+mat-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+mat-card-title {
+  font-size: 24px;
+}
+
+mat-card-subtitle {
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.54);
+}
+
+mat-card-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+button {
+  margin-right: 8px;
+}
+
+/* Add spacing between charts */
+.chart-wrapper {
+  margin-bottom: 20px; /* Adjust this value to increase or decrease the space between graphs */
+}
+
+/* Optional: Remove the margin for the last chart */
+.chart-wrapper:last-child {
+  margin-bottom: 0;
+}

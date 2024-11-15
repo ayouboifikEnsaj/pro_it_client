@@ -1,0 +1,54 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Equipments</mat-card-title>
+    <mat-card-subtitle>A list of all the Equipments.</mat-card-subtitle>
+    <mat-card-actions>
+      <button class="btn btn-outline-primary" (click)="openDialog()">
+        <mat-icon>add</mat-icon>
+        New Equipment
+      </button>
+    </mat-card-actions>
+  </mat-card-header>
+  <mat-card-content>
+    <div class="table-container">
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+        <!-- ID Column -->
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef> ID </th>
+          <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+        </ng-container>
+
+        <!-- Equipment Name Column -->
+        <ng-container matColumnDef="equipmentName">
+          <th mat-header-cell *matHeaderCellDef> EquipmentName </th>
+          <td mat-cell *matCellDef="let element"> {{element.equipmentName}} </td>
+        </ng-container>
+
+        <!-- Comptoire : Zone : Aeroport Column -->
+        <!--<ng-container matColumnDef="comptoireZoneAeroport">
+          <th mat-header-cell *matHeaderCellDef> Comptoire : Zone : Aéroport </th>
+          <td mat-cell *matCellDef="let element"> {{element.comptoireName}} : {{element.zoneName}} : {{element.aeroportName}} </td>
+        </ng-container>-->
+
+        <!-- Actions Column -->
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef> Actions </th>
+          <td mat-cell *matCellDef="let element">
+            <button mat-icon-button class="btn btn-outline-warning" (click)="openDialog(element)">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button  mat-icon-button class="btn btn-outline-danger" (click)="deleteEquipment(element)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+      <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page of periodic elements">
+      </mat-paginator>
+    </div>
+  </mat-card-content>
+</mat-card>

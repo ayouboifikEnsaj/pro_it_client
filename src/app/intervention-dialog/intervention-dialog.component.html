@@ -1,0 +1,74 @@
+<form [formGroup]="formIntervention" (ngSubmit)="saveIntervention()">
+  <h3 mat-dialog-title class="dialog-title">{{ data.title }}</h3>
+  <div mat-dialog-content class="form-container">
+    <!-- Form fields with adjusted sizes -->
+    <mat-form-field class="custom-form-field">
+      <mat-label>Compagnie</mat-label>
+      <mat-select formControlName="compagnie">
+        <mat-option *ngFor="let compagnie of compagnies" [value]="compagnie.id">
+          {{ compagnie.compagnieName }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="custom-form-field">
+      <mat-label>Utilisateur</mat-label>
+      <input matInput formControlName="appUser" readonly>
+    </mat-form-field>
+    <mat-form-field class="custom-form-field">
+      <mat-label>Zone</mat-label>
+      <mat-select formControlName="zone">
+        <mat-option *ngFor="let zone of zones" [value]="zone.id">
+          {{ zone.zoneName }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="custom-form-field">
+      <mat-label>Comptoire</mat-label>
+      <mat-select formControlName="comptoire">
+        <mat-option *ngFor="let comptoire of comptoires" [value]="comptoire.id">
+          {{ comptoire.comptoireName }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="custom-form-field">
+      <mat-label>Projet</mat-label>
+      <mat-select formControlName="projet">
+        <mat-option *ngFor="let projet of projets" [value]="projet.id">
+          {{ projet.projetName }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <div *ngIf="data.intervention?.id && data.intervention?.status === 'FERMER'">
+    <mat-form-field class="custom-form-field">
+      <mat-label>Equipment</mat-label>
+      <mat-select formControlName="equipment">
+        <mat-option *ngFor="let equipment of equipments" [value]="equipment.id">
+          {{ equipment.equipmentName
+          }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="custom-form-field">
+      <mat-label>Solution</mat-label>
+      <mat-select formControlName="solution">
+        <mat-option *ngFor="let solution of solutions" [value]="solution.id">
+          {{ solution.libelle }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="custom-form-field">
+      <mat-label>Problème</mat-label>
+      <mat-select formControlName="probleme">
+        <mat-option *ngFor="let probleme of problemes" [value]="probleme.id">
+          {{ probleme.libelle }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    </div>
+
+  </div>
+  <div mat-dialog-actions class="dialog-actions">
+    <button mat-raised-button type="submit" color="primary" class="submit-button">Save</button>
+    <button (click)="onNoClick()" mat-raised-button color="warn" class="cancel-button">Cancel</button>
+  </div>
+</form>

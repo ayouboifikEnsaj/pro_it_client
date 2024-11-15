@@ -1,0 +1,42 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Solutions</mat-card-title>
+    <mat-card-subtitle>A list of all solutions</mat-card-subtitle>
+    <mat-card-actions>
+      <button  (click)="openDialog()" class="btn btn-outline-primary">
+        <mat-icon>add</mat-icon> New Solution
+      </button>
+    </mat-card-actions>
+  </mat-card-header>
+  <mat-card-content>
+    <div class="table-container">
+      <mat-form-field appearance="outline">
+        <mat-label>Search</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Search in solution">
+      </mat-form-field>
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+        <ng-container matColumnDef="libelle">
+          <th mat-header-cell *matHeaderCellDef> Libelle </th>
+          <td mat-cell *matCellDef="let element"> {{element.libelle}} </td>
+        </ng-container>
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef> Action </th>
+          <td mat-cell *matCellDef="let element">
+            <button mat-icon-button (click)="openDialog(element)" class="btn btn-outline-warning">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button (click)="deleteSolution(element)" class="btn btn-outline-danger">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="['libelle', 'action']"></tr>
+        <tr mat-row *matRowDef="let row; columns: ['libelle', 'action'];"></tr>
+      </table>
+      <mat-paginator  [pageSizeOptions]="[5, 10, 20]"
+                      showFirstLastButtons
+                      aria-label="Select page of periodic elements">
+      </mat-paginator>
+    </div>
+  </mat-card-content>
+</mat-card>
